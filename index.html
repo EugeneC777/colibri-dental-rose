@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Colibri Dental — авторская эстетическая стоматология в Москве</title>
+<meta name="description" content="Colibri Dental — премиальная авторская стоматология в Москве. Виниры нового поколения, неотличимые от натуральных зубов. Эстетика, экспертность, забота." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#3a2b2b;          /* тёплый тёмно-мауве (текст/тёмные детали) */
+    --ink-deep:#2c1f20;     /* глубокий винно-плам для тёмных секций */
+    --gold:#bf8884;         /* пудрово-розовый акцент (RGB 191,136,132) */
+    --gold-deep:#8c534f;    /* глубокий розовый для текста на светлом (контраст) */
+    --cream:#f5eae7;        /* пудрово-розовый фон */
+    --paper:#ffffff;
+    --line:#ecdedb;         /* деликатные розово-бежевые разделители */
+    --muted:#7a625f;        /* приглушённый тёплый текст */
+    --on-dark:#f1e6e3;      /* текст на тёмном */
+    --on-dark-mut:#c1a8a4;
+
+    --maxw:1280px;
+    --pad:clamp(20px,5vw,72px);
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    font-weight:400;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.08;letter-spacing:.005em}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;font-weight:500;
+    color:var(--gold-deep);
+  }
+  .eyebrow.on-dark{color:var(--gold)}
+
+  /* ---------- buttons / links ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.6em;
+    font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;
+    padding:1.05em 2em;border-radius:2px;cursor:pointer;border:1px solid var(--ink);
+    background:var(--ink);color:#fff;transition:all .4s var(--ease);
+  }
+  .btn:hover{background:transparent;color:var(--ink)}
+  .btn.light{background:transparent;color:var(--ink)}
+  .btn.light:hover{background:var(--ink);color:#fff}
+  .btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+  .btn.gold:hover{background:transparent;color:var(--gold)}
+
+  .ulink{
+    display:inline-flex;align-items:center;gap:.7em;
+    font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;
+    padding-bottom:.45em;position:relative;cursor:pointer;
+  }
+  .ulink::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+    background:currentColor;transform-origin:right;transform:scaleX(1);transition:transform .5s var(--ease)}
+  .ulink:hover::after{transform-origin:left;transform:scaleX(.35)}
+  .ulink svg{width:18px;height:18px;transition:transform .4s var(--ease)}
+  .ulink:hover svg{transform:translateX(5px)}
+
+  /* ---------- nav ---------- */
+  header{position:fixed;inset:0 0 auto 0;z-index:100;transition:all .5s var(--ease)}
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px var(--pad);transition:all .5s var(--ease);
+  }
+  header.scrolled{background:rgba(245,241,234,.86);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line)}
+  header.scrolled .nav{padding-top:14px;padding-bottom:14px}
+  .brand{display:flex;align-items:center;gap:12px;z-index:120}
+  .brand img{height:100px;width:auto;transition:filter .5s var(--ease),height .5s var(--ease)}
+  header.scrolled .brand img{height:82px}
+  /* На прозрачной шапке логотип белый, при скролле — фирменный тёмный */
+  header:not(.scrolled) .brand img{filter:brightness(0) invert(1)}
+  .menu{display:flex;align-items:center;gap:38px}
+  .menu a{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+    position:relative;padding:6px 0;color:#fff;transition:color .4s}
+  header.scrolled .menu a{color:var(--ink)}
+  .menu a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .4s var(--ease)}
+  .menu a:hover::after{width:100%}
+  .menu a.cta{border:1px solid currentColor;padding:.7em 1.4em;border-radius:2px}
+  .menu a.cta::after{display:none}
+  .menu a.cta:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;z-index:120;padding:6px}
+  .burger span{width:26px;height:1.5px;background:#fff;transition:all .4s var(--ease)}
+  header.scrolled .burger span{background:var(--ink)}
+  body.menu-open .burger span{background:var(--ink)}
+  body.menu-open .burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  body.menu-open .burger span:nth-child(2){opacity:0}
+  body.menu-open .burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+  .hero__bg{position:absolute;inset:0;z-index:-2}
+  .hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .hero__bg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(44,31,32,.55) 0%,rgba(44,31,32,.15) 35%,rgba(44,31,32,.78) 100%)}
+  .hero__inner{width:100%;padding-bottom:clamp(48px,9vh,110px);padding-top:140px}
+  .hero h1{font-size:clamp(2.9rem,7.4vw,6.6rem);font-weight:500;max-width:16ch;text-wrap:balance}
+  .hero h1 em{font-style:italic;color:#fff}
+  .hero p.lead{margin-top:26px;max-width:46ch;font-size:clamp(1rem,1.6vw,1.18rem);
+    color:rgba(255,255,255,.86);font-weight:300}
+  .hero .actions{margin-top:40px;display:flex;gap:18px 26px;flex-wrap:wrap;align-items:center}
+  .scrollcue{position:absolute;right:var(--pad);bottom:42px;display:flex;align-items:center;gap:12px;
+    font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+  .scrollcue i{display:block;width:1px;height:46px;background:rgba(255,255,255,.5);position:relative;overflow:hidden}
+  .scrollcue i::after{content:"";position:absolute;inset:0;background:#fff;animation:cue 2.4s var(--ease) infinite}
+  @keyframes cue{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+
+  /* ---------- manifesto ---------- */
+  .manifesto{padding-block:clamp(90px,16vh,180px);text-align:center}
+  .manifesto .q{font-size:clamp(1.7rem,4vw,3.3rem);font-weight:400;line-height:1.22;max-width:20ch;margin:28px auto 0;text-wrap:balance}
+  .manifesto .q span{font-style:italic;color:var(--gold-deep)}
+  .manifesto .sign{margin-top:34px;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- section scaffolding ---------- */
+  section{position:relative}
+  .sec-head{max-width:62ch}
+  .sec-head h2{font-size:clamp(2.1rem,4.6vw,3.7rem);margin-top:18px}
+  .sec-head p{margin-top:20px;color:var(--muted);font-size:1.06rem;max-width:54ch}
+
+  /* feature split */
+  .feature{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,5vw,80px);align-items:center;
+    padding-block:clamp(70px,12vh,140px)}
+  .feature.rev{grid-template-columns:1fr 1.05fr}
+  .feature.rev .feature__media{order:2}
+  .feature__media{position:relative;overflow:hidden;border-radius:3px}
+  .feature__media img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform 1.4s var(--ease)}
+  .feature__media:hover img{transform:scale(1.05)}
+  .feature__copy h2{font-size:clamp(2rem,4.4vw,3.5rem)}
+  .feature__media .tag{position:absolute;left:0;bottom:0;background:var(--cream);color:var(--ink);
+    padding:14px 22px;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase}
+  .feature ul.spec{margin-top:30px;list-style:none;display:grid;gap:2px}
+  .feature ul.spec li{display:flex;gap:16px;padding:16px 0;border-top:1px solid var(--line);align-items:flex-start}
+  .feature ul.spec li:last-child{border-bottom:1px solid var(--line)}
+  .feature ul.spec b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--gold-deep);min-width:46px;line-height:1}
+  .feature ul.spec .t{font-weight:500}
+  .feature ul.spec .d{color:var(--muted);font-size:.95rem;margin-top:2px}
+  .feature .ulink{margin-top:34px}
+
+  /* ---------- before / after slider ---------- */
+  .ba{padding-block:clamp(70px,11vh,130px)}
+  .ba__grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(30px,4vw,64px);align-items:center;margin-top:54px}
+  .ba__sliders{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,32px);margin-top:50px}
+  .ba__item .ba__cap{margin-top:14px;font-size:.85rem;color:var(--muted);text-align:center}
+  .compare{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:3px;
+    user-select:none;cursor:ew-resize;background:#000}
+  .compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .compare .after{clip-path:inset(0 0 0 50%)}
+  .compare .lab{position:absolute;top:16px;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;
+    color:#fff;background:rgba(44,31,32,.55);padding:6px 12px;border-radius:2px;backdrop-filter:blur(4px)}
+  .compare .lab.l{left:16px}
+  .compare .lab.r{right:16px}
+  .compare .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-1px);pointer-events:none}
+  .compare .handle::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:46px;height:46px;border-radius:50%;background:#fff;
+    box-shadow:0 6px 24px rgba(0,0,0,.3)}
+  .compare .handle::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    color:var(--ink);font-size:18px;font-weight:600}
+  .ba__copy h2{font-size:clamp(1.9rem,3.6vw,3rem)}
+  .ba__copy p{margin-top:18px;color:var(--muted)}
+  .ba__pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+  .ba__pair figure{position:relative;overflow:hidden;border-radius:3px}
+  .ba__pair img{aspect-ratio:1/1;width:100%;object-fit:cover}
+  .ba__pair figcaption{position:absolute;left:10px;bottom:10px;font-size:.6rem;letter-spacing:.2em;
+    text-transform:uppercase;color:#fff;background:rgba(44,31,32,.55);padding:5px 9px;border-radius:2px}
+
+  /* ---------- tech (dark) ---------- */
+  .tech{background:var(--ink-deep);color:var(--on-dark);padding:clamp(80px,14vh,160px) 0}
+  .tech .sec-head h2{color:#fff}
+  .tech .sec-head p{color:var(--on-dark-mut)}
+  .tech__media{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:52px 0}
+  .tech__media img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:3px}
+  .tech__list{display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(30px,5vw,70px)}
+  .tech__list .it{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:26px 0;
+    border-top:1px solid rgba(255,255,255,.12)}
+  .tech__list .it .n{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold)}
+  .tech__list .it h3{font-size:1.3rem;color:#fff;font-family:'Inter',sans-serif;font-weight:500;letter-spacing:0}
+  .tech__list .it p{color:var(--on-dark-mut);font-size:.95rem;margin-top:6px}
+
+  /* ---------- services ---------- */
+  .services{padding-block:clamp(80px,13vh,150px)}
+  .srv{border-top:1px solid var(--line)}
+  .srv a{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;
+    padding:30px 4px;transition:padding .45s var(--ease),color .45s}
+  .srv a:hover{padding-left:24px;color:var(--gold-deep)}
+  .srv:last-child{border-bottom:1px solid var(--line)}
+  .srv .num{font-size:.7rem;letter-spacing:.2em;color:var(--muted)}
+  .srv .nm{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.4vw,2.6rem);font-weight:500}
+  .srv .ar{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;
+    transition:all .45s var(--ease)}
+  .srv a:hover .ar{background:var(--gold);border-color:var(--gold);color:#fff;transform:rotate(-45deg)}
+  .srv .ar svg{width:15px;height:15px}
+
+  /* ---------- founder ---------- */
+  .founder{background:var(--paper)}
+  .founder__in{display:grid;grid-template-columns:.85fr 1fr;gap:clamp(36px,6vw,90px);align-items:center;
+    padding-block:clamp(70px,12vh,140px)}
+  .founder__media{position:relative}
+  .founder__media img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;border-radius:3px}
+  .founder__media .badge{position:absolute;right:-14px;bottom:30px;background:var(--ink);color:#fff;
+    padding:20px 24px;max-width:200px;border-radius:3px}
+  .founder__media .badge b{font-family:'Cormorant Garamond',serif;font-size:2.6rem;display:block;line-height:1;color:var(--gold)}
+  .founder__media .badge span{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-mut)}
+  .founder__copy .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.7rem,3.4vw,2.7rem);
+    line-height:1.25;margin:22px 0 26px;text-wrap:balance}
+  .founder__copy p{color:var(--muted);margin-bottom:16px}
+  .founder__copy .who{margin-top:30px;display:flex;align-items:center;gap:16px}
+  .founder__copy .who b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500}
+  .founder__copy .who span{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- atmosphere ---------- */
+  .atmo{padding:clamp(80px,13vh,150px) 0}
+  .atmo__media{position:relative;overflow:hidden;border-radius:3px;margin-top:48px}
+  .atmo__media img{width:100%;height:clamp(320px,52vh,560px);object-fit:cover}
+  .atmo__media .cap{position:absolute;left:clamp(20px,4vw,48px);bottom:clamp(20px,4vw,48px);color:#fff;max-width:34ch}
+  .atmo__media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(44,31,32,.7))}
+  .atmo__media .cap{z-index:2}
+  .atmo__media .cap h3{color:#fff;font-size:clamp(1.6rem,3vw,2.4rem)}
+  .atmo__media .cap p{color:rgba(255,255,255,.85);margin-top:10px;font-weight:300}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:60px;text-align:center}
+  .stats .st b{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5vw,4rem);font-weight:500;color:var(--ink);line-height:1}
+  .stats .st span{display:block;margin-top:10px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- callout (final CTA band) ---------- */
+  .callout{background:radial-gradient(120% 120% at 50% 0%,rgba(191,136,132,.26),rgba(191,136,132,0) 58%),var(--ink-deep);color:#fff;text-align:center;padding:clamp(90px,16vh,170px) 0}
+  .callout h2{font-size:clamp(2.3rem,5.4vw,4.4rem);max-width:18ch;margin:18px auto 0;text-wrap:balance}
+  .callout h2 em{font-style:italic;color:var(--gold)}
+  .callout p{color:var(--on-dark-mut);max-width:44ch;margin:24px auto 38px}
+
+  /* ---------- footer ---------- */
+  footer{background:#241718;color:var(--on-dark-mut);padding:clamp(64px,9vh,100px) 0 40px}
+  .foot__top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding-bottom:54px;
+    border-bottom:1px solid rgba(255,255,255,.1)}
+  .foot__brand img{height:100px;filter:brightness(0) invert(1);opacity:.95}
+  .foot__brand p{margin-top:20px;font-size:.92rem;max-width:30ch}
+  .foot h4{color:#fff;font-family:'Inter',sans-serif;font-weight:500;font-size:.74rem;letter-spacing:.2em;
+    text-transform:uppercase;margin-bottom:18px}
+  .foot a,.foot address{font-style:normal;display:block;color:var(--on-dark-mut);font-size:.95rem;line-height:1.9;transition:color .3s}
+  .foot a:hover{color:#fff}
+  .foot .soc{display:flex;gap:14px;margin-top:18px}
+  .foot .soc a{width:40px;height:40px;border:1px solid rgba(255,255,255,.18);border-radius:50%;display:grid;place-items:center;transition:all .4s var(--ease)}
+  .foot .soc a:hover{background:var(--gold);border-color:var(--gold)}
+  .foot .soc svg{width:17px;height:17px}
+  .foot__bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:30px;font-size:.8rem;letter-spacing:.04em}
+
+  /* ---------- reveal anim ---------- */
+  .rv{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .rv.in{opacity:1;transform:none}
+  .rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}
+
+  /* ---------- pricing ---------- */
+  .pricing{padding:clamp(80px,13vh,150px) 0;background:var(--paper)}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+  .price-card{border:1px solid var(--line);border-radius:4px;padding:40px 34px;background:var(--cream);
+    display:flex;flex-direction:column;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+  .price-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px -30px rgba(58,43,43,.4)}
+  .price-card.feat{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .price-card .pc-top{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep)}
+  .price-card.feat .pc-top{color:var(--gold)}
+  .price-card h3{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:500;margin:14px 0 6px}
+  .price-card.feat h3{color:#fff}
+  .price-card .pc-desc{color:var(--muted);font-size:.95rem;min-height:48px}
+  .price-card.feat .pc-desc{color:var(--on-dark-mut)}
+  .price-card .pc-price{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:500;margin:22px 0 4px;line-height:1}
+  .price-card .pc-price small{font-size:.9rem;font-family:'Inter',sans-serif;color:var(--muted);letter-spacing:.02em}
+  .price-card.feat .pc-price small{color:var(--on-dark-mut)}
+  .price-card ul{list-style:none;margin:20px 0 28px;display:grid;gap:11px}
+  .price-card li{display:flex;gap:11px;font-size:.95rem;align-items:flex-start}
+  .price-card li svg{width:17px;height:17px;flex:none;margin-top:3px;color:var(--gold-deep)}
+  .price-card.feat li svg{color:var(--gold)}
+  .price-card .btn{margin-top:auto;justify-content:center}
+  .price-card.feat .btn{background:var(--gold);border-color:var(--gold)}
+  .price-card.feat .btn:hover{background:transparent;color:var(--gold)}
+  .price-note{margin-top:26px;font-size:.85rem;color:var(--muted);max-width:62ch}
+
+  /* ---------- team ---------- */
+  .team{padding:clamp(80px,13vh,150px) 0}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:50px}
+  .member{position:relative}
+  .member .ph{aspect-ratio:3/4;border-radius:4px;overflow:hidden;background:linear-gradient(150deg,#9a5f5b,#2c1f20);
+    display:grid;place-items:center}
+  .member .ph img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  .member .ph .mono{font-family:'Cormorant Garamond',serif;font-size:3.4rem;color:var(--gold);letter-spacing:.04em}
+  .member h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;margin-top:18px}
+  .member span{display:block;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+  /* ---------- testimonials ---------- */
+  .tst{padding:clamp(80px,13vh,150px) 0;background:var(--cream)}
+  .tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+  .tst-card{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:36px 32px;display:flex;flex-direction:column}
+  .tst-stars{display:flex;gap:4px;color:var(--gold);margin-bottom:18px}
+  .tst-stars svg{width:17px;height:17px}
+  .tst-card p{font-family:'Cormorant Garamond',serif;font-size:1.32rem;line-height:1.5;font-style:italic;color:var(--ink)}
+  .tst-card .by{margin-top:auto;padding-top:24px;display:flex;align-items:center;gap:14px}
+  .tst-card .by .av{width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--gold);
+    display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:1.3rem;flex:none}
+  .tst-card .by b{font-weight:500;font-size:.98rem}
+  .tst-card .by em{font-style:normal;display:block;font-size:.78rem;color:var(--muted);margin-top:2px}
+
+  /* ---------- booking ---------- */
+  .booking{padding:clamp(80px,14vh,160px) 0;background:var(--paper)}
+  .booking__in{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(36px,6vw,90px);align-items:start}
+  .booking__copy h2{font-size:clamp(2.1rem,4.4vw,3.4rem);margin-top:14px}
+  .booking__copy .lead{color:var(--muted);margin-top:20px;max-width:42ch}
+  .booking__copy .contacts-quick{margin-top:34px;display:grid;gap:18px}
+  .booking__copy .cq{display:flex;gap:16px;align-items:flex-start;padding-top:18px;border-top:1px solid var(--line)}
+  .booking__copy .cq svg{width:22px;height:22px;color:var(--gold-deep);flex:none;margin-top:2px}
+  .booking__copy .cq b{display:block;font-weight:500}
+  .booking__copy .cq span{color:var(--muted);font-size:.92rem}
+  .form{background:var(--cream);border:1px solid var(--line);border-radius:5px;padding:clamp(26px,3.4vw,40px)}
+  .field{margin-bottom:20px}
+  .field label{display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:9px;color:var(--ink)}
+  .field label .req{color:var(--gold-deep)}
+  .field input,.field select,.field textarea{width:100%;font-family:inherit;font-size:1rem;color:var(--ink);
+    background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:14px 16px;transition:border-color .3s,box-shadow .3s}
+  .field textarea{resize:vertical;min-height:96px}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(191,136,132,.15)}
+  .field input.err,.field select.err{border-color:#c0392b;box-shadow:0 0 0 3px rgba(192,57,43,.12)}
+  .field .msg{display:none;color:#c0392b;font-size:.82rem;margin-top:7px}
+  .field input.err ~ .msg,.field select.err ~ .msg{display:block}
+  .consent{display:flex;gap:12px;align-items:flex-start;margin:6px 0 22px;font-size:.86rem;color:var(--muted);line-height:1.5}
+  .consent input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--gold-deep);cursor:pointer}
+  .consent a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+  .consent.err{color:#c0392b}
+  .form .btn{width:100%;justify-content:center}
+  .form .fnote{margin-top:16px;font-size:.78rem;color:var(--muted);text-align:center}
+  .form__done{display:none;text-align:center;padding:30px 10px}
+  .form__done.show{display:block}
+  .form__done .ic{width:64px;height:64px;border-radius:50%;background:var(--ink);color:var(--gold);display:grid;place-items:center;margin:0 auto 22px}
+  .form__done .ic svg{width:30px;height:30px}
+  .form__done h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:500}
+  .form__done p{color:var(--muted);margin-top:10px}
+  body.sent .form__fields{display:none}
+
+  /* ---------- modal ---------- */
+  .modal{position:fixed;inset:0;z-index:200;display:none}
+  .modal.open{display:block}
+  .modal__scrim{position:absolute;inset:0;background:rgba(44,31,32,.62);backdrop-filter:blur(4px)}
+  .modal__box{position:relative;max-width:720px;width:calc(100% - 36px);max-height:86vh;overflow:auto;
+    margin:7vh auto;background:var(--paper);border-radius:6px;padding:clamp(28px,4vw,52px)}
+  .modal__box h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:8px}
+  .modal__box h4{font-family:'Inter',sans-serif;font-weight:600;font-size:1rem;margin:24px 0 8px}
+  .modal__box p,.modal__box li{color:var(--muted);font-size:.94rem;line-height:1.7}
+  .modal__box ul{margin:8px 0 8px 20px}
+  .modal__box .ph-mark{background:rgba(191,136,132,.16);color:var(--gold-deep);padding:1px 6px;border-radius:3px;font-weight:500}
+  .modal__close{position:absolute;top:16px;right:16px;width:42px;height:42px;border:1px solid var(--line);
+    border-radius:50%;background:var(--paper);cursor:pointer;display:grid;place-items:center;transition:all .3s}
+  .modal__close:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .modal__close svg{width:18px;height:18px}
+
+  /* disclaimer */
+  .foot__legal{padding-top:26px;font-size:.78rem;line-height:1.7;color:rgba(167,162,148,.75)}
+  .foot__legal a{display:inline;color:rgba(167,162,148,.95);text-decoration:underline;text-underline-offset:2px}
+  .foot__legal .disc{display:block;margin-top:10px;color:rgba(167,162,148,.95)}
+
+  /* ---------- art-medicine ---------- */
+  .artmed{padding:clamp(80px,13vh,150px) 0;background:var(--paper)}
+  .artmed .sec-head{max-width:66ch}
+  .artmed .lead{margin-top:22px;font-size:1.14rem;color:var(--ink);max-width:60ch;line-height:1.6}
+  .artmed__media{margin:clamp(40px,6vh,72px) auto 0;max-width:560px;text-align:center}
+  .artmed__media img{width:100%;height:auto;display:block;border-radius:4px;box-shadow:0 30px 70px -40px rgba(58,43,43,.55)}
+  .artmed__media figcaption{margin-top:14px;font-size:.82rem;color:var(--muted)}
+  .artmed__body{max-width:760px;margin:0 auto}
+  .artmed__body h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.55rem,2.8vw,2.1rem);font-weight:500;margin:40px 0 12px}
+  .artmed__body > p{color:var(--muted);margin-bottom:16px;font-size:1.05rem;line-height:1.7}
+  .artmed__quote{margin:42px 0;padding:6px 0 6px 32px;border-left:2px solid var(--gold)}
+  .artmed__quote .lbl{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:18px}
+  .artmed__quote blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.25rem,2.2vw,1.6rem);line-height:1.5;color:var(--ink)}
+  .artmed__quote blockquote p{margin-bottom:16px}
+  .artmed__quote cite{display:block;margin-top:8px;font-style:normal;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .artmed__people{max-width:760px;margin:8px auto 0}
+  .artmed__people .person{padding:26px 0;border-top:1px solid var(--line)}
+  .artmed__people .person:last-child{border-bottom:1px solid var(--line)}
+  .artmed__people .person h4{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:500;margin-bottom:8px}
+  .artmed__people .person p{color:var(--muted);font-size:.98rem;line-height:1.7}
+  .artmed a,.artmed__contacts a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:2px}
+  .artmed__contacts{max-width:760px;margin:42px auto 0;background:var(--cream);border-radius:4px;padding:30px 34px}
+  .artmed__contacts h4{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;color:var(--ink)}
+  .artmed__contacts p{color:var(--muted);font-size:.96rem;line-height:1.85;margin:0}
+  .artmed .stats{margin-top:60px}
+
+  /* manifesto credentials */
+  .creds{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:clamp(40px,6vh,64px)}
+  .creds .cred{padding:6px clamp(28px,5vw,56px)}
+  .creds .cred strong{display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:500;color:var(--gold-deep);line-height:1}
+  .creds .cred span{display:block;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+  .creds .cred + .cred{border-left:1px solid var(--line)}
+
+  /* tech extra — безграничные возможности */
+  .tech__extra{margin-top:clamp(40px,6vh,64px);border:1px solid rgba(191,136,132,.4);border-radius:6px;padding:clamp(28px,4vw,46px);background:rgba(255,255,255,.03)}
+  .tech__extra > h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:500;color:var(--gold)}
+  .tech__extra-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);margin-top:26px}
+  .te-item{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+  .te-item .te-n{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--gold);line-height:1.3}
+  .te-item h4{font-family:'Inter',sans-serif;font-weight:500;font-size:1.15rem;color:#fff;letter-spacing:0}
+  .te-item p{color:var(--on-dark-mut);font-size:.95rem;margin-top:6px;line-height:1.6}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:980px){
+    .feature,.feature.rev{grid-template-columns:1fr;gap:34px}
+    .feature.rev .feature__media{order:0}
+    .ba__grid{grid-template-columns:1fr}
+    .ba__sliders{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
+    .founder__in{grid-template-columns:1fr;gap:40px}
+    .founder__media{max-width:440px}
+    .foot__top{grid-template-columns:1fr 1fr}
+    .tech__list{grid-template-columns:1fr}
+    .tech__extra-grid{grid-template-columns:1fr;gap:26px}
+    .price-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto}
+    .team-grid{grid-template-columns:repeat(2,1fr)}
+    .tst-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
+    .booking__in{grid-template-columns:1fr;gap:40px}
+  }
+  @media(max-width:760px){
+    .menu{position:fixed;inset:0;flex-direction:column;justify-content:center;gap:34px;
+      background:var(--cream);transform:translateX(100%);transition:transform .5s var(--ease);z-index:110}
+    body.menu-open .menu{transform:none}
+    /* backdrop-filter создаёт containing block для fixed — отключаем, пока меню открыто */
+    body.menu-open header{backdrop-filter:none!important;background:transparent!important;border-color:transparent!important}
+    .menu a{color:var(--ink);font-size:1rem}
+    .menu a.cta{margin-top:10px}
+    .burger{display:flex}
+    .tech__media{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr;gap:38px}
+    .foot__top{grid-template-columns:1fr}
+    .founder__media .badge{right:14px}
+    .srv a{grid-template-columns:auto 1fr;gap:16px}
+    .srv .ar{display:none}
+    .team-grid{grid-template-columns:1fr 1fr;gap:14px}
+    .member h3{font-size:1.3rem}
+    .creds{flex-direction:column;gap:22px}
+    .creds .cred + .cred{border-left:none;border-top:1px solid var(--line);padding-top:22px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto!important}
+    .rv{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <nav class="wrap nav">
+    <a href="#top" class="brand" aria-label="Colibri Dental">
+      <img src="assets/logo.png" alt="Colibri Dental" />
+    </a>
+    <div class="menu" id="menu">
+      <a href="#mission">Миссия</a>
+      <a href="#team">Команда</a>
+      <a href="#results">Результаты</a>
+      <a href="#tech">Технологии</a>
+      <a href="#art">Арт-медицина</a>
+      <a href="#booking" class="cta">Записаться</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg"><img src="assets/hero.jpg" alt="Доктор Colibri Dental за работой под увеличением" /></div>
+    <div class="wrap hero__inner">
+      <p class="eyebrow on-dark rv">Colibri Dental · Авторская стоматология · Москва</p>
+      <h1 class="rv d1">Новый стандарт<br><em>эстетической</em> стоматологии</h1>
+      <p class="lead rv d2">Ваша улыбка — шаг в новую жизнь. Создаём красоту по канонам природы.</p>
+      <div class="actions rv d3">
+        <a href="#booking" class="btn gold">Записаться на консультацию</a>
+        <a href="#aesthetic" class="ulink" style="color:#fff">Узнать больше
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="scrollcue"><span>Листайте</span><i></i></div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section id="mission" class="manifesto wrap">
+    <p class="eyebrow rv">Философия</p>
+    <p class="q rv d1">«Мы создаём улыбки, которые выглядят <span>максимально естественно</span>. О нашем участии в их создании, не узнает никто — если только вы не расскажете».</p>
+    <p class="sign rv d2">Ольга Кашмина · основатель Colibri Dental</p>
+    <div class="creds rv d3">
+      <div class="cred"><strong>Forbes</strong><span>в списке с 2018 года</span></div>
+      <div class="cred"><strong>Nobel Biocare</strong><span>центр клинического мастерства</span></div>
+    </div>
+  </section>
+
+  <!-- AESTHETIC / FEATURE -->
+  <section id="aesthetic" class="wrap feature">
+    <div class="feature__media rv">
+      <img src="assets/detail.jpg" alt="Авторская ручная работа над винирами" />
+      <span class="tag">Эстетика как искусство</span>
+    </div>
+    <div class="feature__copy">
+      <p class="eyebrow rv">Эстетическая стоматология</p>
+      <h2 class="sec-head rv d1" style="margin-top:14px">Красота в деталях,<br>которых не видно</h2>
+      <p class="rv d2" style="color:var(--muted);margin-top:20px">Каждая улыбка рождается на стыке медицины, технологии и искусства. Мы работаем с пропорциями лица, характером и светом — чтобы результат выглядел не «сделанным», а натуральным, только ещё лучше.</p>
+      <ul class="spec">
+        <li class="rv"><b>01</b><div><div class="t">Цифровое моделирование</div><div class="d">Вы видите будущий результат ещё до начала лечения.</div></div></li>
+        <li class="rv d1"><b>02</b><div><div class="t">Авторская ручная работа</div><div class="d">Как искусство художника, каждая реставрация создаётся индивидуально, под микроскопом.</div></div></li>
+        <li class="rv d2"><b>03</b><div><div class="t">Естественность результата</div><div class="d">Прозрачность эмали и анатомия, неотличимые от природных зубов.</div></div></li>
+      </ul>
+      <a href="#veneers" class="ulink rv d3">Перейти к винирам
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- VENEERS / FEATURE REV -->
+  <section id="veneers" class="founder" style="background:var(--paper)">
+  <div class="wrap feature rev" style="padding-block:clamp(70px,12vh,140px)">
+    <div class="feature__media rv">
+      <img src="assets/veneers-result.jpg" alt="Счастливая пациентка после лечения в Colibri Dental" />
+      <span class="tag">Результат работы клиники</span>
+    </div>
+    <div class="feature__copy">
+      <p class="eyebrow rv">Главное направление</p>
+      <h2 class="sec-head rv d1" style="margin-top:14px">Виниры нового<br>поколения</h2>
+      <p class="rv d2" style="color:var(--muted);margin-top:20px">Тончайшие виниры, <strong style="color:var(--ink)">неотличимые от натуральных зубов</strong>. Мы не «ставим виниры» — мы возвращаем улыбке её естественную красоту так, что её невозможно распознать. Над этим результатом работает команда: хирург, гнатолог, ортодонт, гигиенист. Это ключевая экспертиза клиники при личном участии Ольги Кашминой — ведущего специалиста по эстетической стоматологии и реставрации.</p>
+      <ul class="spec">
+        <li class="rv"><b>—</b><div><div class="t">Минимальная обточка</div><div class="d">Бережное отношение к собственным тканям зуба.</div></div></li>
+        <li class="rv d1"><b>—</b><div><div class="t">Индивидуальная анатомия</div><div class="d">Форма, оттенок и прозрачность подбираются под ваше лицо.</div></div></li>
+        <li class="rv d2"><b>—</b><div><div class="t">Премиальная керамика</div><div class="d">Материалы, которые годами сохраняют живой блеск.</div></div></li>
+        <li class="rv d3"><b>—</b><div><div class="t">Гарантия</div><div class="d">Уверенность в результате — мы отвечаем за качество каждой работы.</div></div></li>
+      </ul>
+      <a href="#booking" class="ulink rv d3">Обсудить вашу улыбку
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section id="results" class="ba wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Результаты</p>
+      <h2 style="margin-top:14px">До и после</h2>
+      <p>Реальные работы клиники. Потяните за ползунок, чтобы увидеть преображение.</p>
+    </div>
+    <div class="ba__sliders">
+      <div class="ba__item rv">
+        <div class="compare" aria-label="Сравнение до и после">
+          <img class="before" src="assets/ba-makarova-before.jpg" alt="До лечения" />
+          <img class="after"  src="assets/ba-makarova-after.jpg"  alt="После лечения" />
+          <span class="lab l">До</span>
+          <span class="lab r">После</span>
+          <span class="handle"></span>
+        </div>
+      </div>
+      <div class="ba__item rv d1">
+        <div class="compare" aria-label="Сравнение до и после">
+          <img class="before" src="assets/ba-eknik-before.jpg" alt="До лечения" />
+          <img class="after"  src="assets/ba-eknik-after.jpg"  alt="После лечения" />
+          <span class="lab l">До</span>
+          <span class="lab r">После</span>
+          <span class="handle"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH -->
+  <section id="tech" class="tech">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow on-dark">Технологии</p>
+        <h2 style="margin-top:14px">Профессиональная диагностика —<br>безусловная необходимость</h2>
+        <p>Передовое диагностическое оборудование — необходимая база для эстетической стоматологии. Каждое решение принимается на основе точных данных, а не предположений.</p>
+      </div>
+      <div class="tech__media rv d1">
+        <img src="assets/equip-1.jpg" alt="3D-томограф Dentsply Sirona Orthophos 3D SL" />
+        <img src="assets/equip-2.jpg" alt="3D-диагностика и анализ КТ-снимков" />
+      </div>
+      <div class="tech__list">
+        <div class="it rv"><span class="n">01</span><div><h3>Dentsply Sirona Orthophos 3D SL</h3><p>Современный 3D-томограф премиум-класса для точной объёмной диагностики.</p></div></div>
+        <div class="it rv d1"><span class="n">02</span><div><h3>Cadiax 4 System</h3><p>Кондилография — точная регистрация движений челюсти для гнатологии.</p></div></div>
+        <div class="it rv"><span class="n">03</span><div><h3>Diagnocat (Диагнокат)</h3><p>Анализ стоматологических снимков с помощью искусственного интеллекта.</p></div></div>
+        <div class="it rv d1"><span class="n">04</span><div><h3>Микроскоп Leica</h3><p>Многократное увеличение для ювелирной точности каждой манипуляции.</p></div></div>
+        <div class="it rv"><span class="n">05</span><div><h3>Современные 3D-сканеры</h3><p>Цифровые слепки без дискомфорта и моделирование улыбки в цифре.</p></div></div>
+      </div>
+      <div class="tech__extra rv">
+        <h3>Безграничные возможности</h3>
+        <div class="tech__extra-grid">
+          <div class="te-item"><span class="te-n">01</span><div><h4>Хирургия BRUMABA</h4><p>Вершина дентальной хирургии — с наркозным и дыхательным аппаратами.</p></div></div>
+          <div class="te-item"><span class="te-n">02</span><div><h4>Лечение во сне и под седацией</h4><p>Профессиональное решение для сложных задач: многомесячное лечение за один день, без боли.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Направления</p>
+      <h2 style="margin-top:14px">Полный спектр услуг</h2>
+    </div>
+    <div style="margin-top:46px">
+      <div class="srv rv"><a href="#booking"><span class="num">01</span><span class="nm">Виниры</span><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span></a></div>
+      <div class="srv rv"><a href="#booking"><span class="num">02</span><span class="nm">Имплантация All-on-4</span><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span></a></div>
+      <div class="srv rv"><a href="#booking"><span class="num">03</span><span class="nm">Ортодонтия</span><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span></a></div>
+      <div class="srv rv"><a href="#booking"><span class="num">04</span><span class="nm">Гнатология</span><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span></a></div>
+      <div class="srv rv"><a href="#booking"><span class="num">05</span><span class="nm">Хирургия</span><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span></a></div>
+      <div class="srv rv"><a href="#booking"><span class="num">06</span><span class="nm">Семейная стоматология</span><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span></a></div>
+      <div class="srv rv"><a href="#booking"><span class="num">07</span><span class="nm">Гигиена</span><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span></a></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Стоимость</p>
+        <h2 style="margin-top:14px">Прозрачный<br>ориентир по стоимости</h2>
+        <p>Точную стоимость врач называет после осмотра и диагностики — она зависит от объёма работы и ваших пожеланий. Ниже — ориентир, чтобы вы понимали порядок цифр.</p>
+      </div>
+      <div class="price-grid">
+        <div class="price-card rv">
+          <span class="pc-top">Знакомство</span>
+          <h3>Консультация</h3>
+          <p class="pc-desc">Осмотр, обсуждение задачи и плана лечения.</p>
+          <div class="pc-price">от 0&nbsp;000&nbsp;₽ <small>/ приём</small></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 13 4 4L19 7"/></svg>Консультация профильного врача</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 13 4 4L19 7"/></svg>Предварительный план лечения</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 13 4 4L19 7"/></svg>Ответы на ваши вопросы</li>
+          </ul>
+          <a href="#booking" class="btn light">Записаться</a>
+        </div>
+        <div class="price-card feat rv d1">
+          <span class="pc-top">Главное направление</span>
+          <h3>Виниры</h3>
+          <p class="pc-desc">Виниры нового поколения, неотличимые от натуральных зубов.</p>
+          <div class="pc-price">от 00&nbsp;000&nbsp;₽ <small>/ зуб</small></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 13 4 4L19 7"/></svg>Цифровое моделирование улыбки</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 13 4 4L19 7"/></svg>Премиальная керамика</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 13 4 4L19 7"/></svg>Работа под микроскопом</li>
+          </ul>
+          <a href="#booking" class="btn gold">Обсудить улыбку</a>
+        </div>
+        <div class="price-card rv d2">
+          <span class="pc-top">Под ключ</span>
+          <h3>Комплексная реабилитация</h3>
+          <p class="pc-desc">Полное восстановление — имплантация, ортодонтия, эстетика.</p>
+          <div class="pc-price">индивидуально <small>/ по плану</small></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 13 4 4L19 7"/></svg>3D-диагностика и план лечения</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 13 4 4L19 7"/></svg>Сопровождение на всех этапах</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 13 4 4L19 7"/></svg>Рассрочка по запросу</li>
+          </ul>
+          <a href="#booking" class="btn light">Рассчитать</a>
+        </div>
+      </div>
+      <p class="price-note rv">* Цифры указаны как ориентир и не являются публичной офертой. Имеются противопоказания, необходима консультация специалиста.</p>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section id="founder" class="founder">
+    <div class="wrap founder__in">
+      <div class="founder__media rv">
+        <img src="assets/doctor.jpg" alt="Ольга Кашмина — основатель и главный врач Colibri Dental" />
+        <div class="badge"><b>20+</b><span>лет авторской практики</span></div>
+      </div>
+      <div class="founder__copy">
+        <p class="eyebrow rv">Об основателе</p>
+        <p class="q rv d1">«Не прекращайте мечтать! Будем реализовывать Ваши мечты вместе».</p>
+        <p class="rv d2">Ольга Кашмина — стоматолог-ортопед, основатель и главный врач клиники. Её специализация — виниры и комплексная эстетическая реабилитация улыбки.</p>
+        <p class="rv d2">Вокруг себя она собрала сильную команду врачей, чтобы помогать пациентам претворять в жизнь самые смелые мечты — о здоровье, красоте и удовольствии от жизни во всех её проявлениях.</p>
+        <div class="who rv d3">
+          <div><b>Ольга Кашмина</b><br><span>Основатель · главный врач</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="team">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Команда</p>
+        <h2 style="margin-top:14px">Врачи, которым<br>доверяют семьями</h2>
+        <p>Команда профессионалов международного класса — бережно, от первой консультации до результата.</p>
+      </div>
+      <div class="team-grid">
+        <div class="member rv">
+          <div class="ph"><img src="assets/doctor.jpg" alt="Ольга Кашмина" /></div>
+          <h3>Ольга Кашмина</h3>
+          <span>Основатель · стоматолог-ортопед</span>
+        </div>
+        <div class="member rv d1">
+          <div class="ph"><img src="assets/doc-maksim.jpg" alt="Максим Медников" /></div>
+          <h3>Максим Медников</h3>
+          <span>Хирург, имплантолог</span>
+        </div>
+        <div class="member rv d2">
+          <div class="ph"><img src="assets/doc-evgeny.jpg" alt="Евгений Зюбин" /></div>
+          <h3>Евгений Зюбин</h3>
+          <span>Гнатолог, ортодонт</span>
+        </div>
+        <div class="member rv d3">
+          <div class="ph"><img src="assets/doc-lyusine.jpg" alt="Люсине Векилян" style="object-position:62% 30%" /></div>
+          <h3>Люсине Векилян</h3>
+          <span>Гнатолог, ортодонт</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="tst">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Отзывы</p>
+        <h2 style="margin-top:14px">Истории, которые<br>начинаются с улыбки</h2>
+      </div>
+      <div class="tst-grid">
+        <div class="tst-card rv">
+          <div class="tst-stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+          </div>
+          <p>«Сделали виниры — и это моя лучшая улыбка. Никто не верит, что зубы не родные».</p>
+          <div class="by"><span class="av">А</span><div><b>Имя пациента</b><em>Виниры · 2025</em></div></div>
+        </div>
+        <div class="tst-card rv d1">
+          <div class="tst-stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+          </div>
+          <p>«Атмосфера как в английском клубе, а не в стоматологии. Спокойно, тепло и по-настоящему премиально».</p>
+          <div class="by"><span class="av">М</span><div><b>Имя пациента</b><em>Комплексное лечение · 2025</em></div></div>
+        </div>
+        <div class="tst-card rv d2">
+          <div class="tst-stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.8 5.9 20.8 7.1 14 2 9.2l6.9-.9z"/></svg>
+          </div>
+          <p>«Боялась сложного лечения, а вышла из клиники с новой улыбкой и в новую жизнь. Спасибо команде!»</p>
+          <div class="by"><span class="av">Е</span><div><b>Имя пациента</b><em>All-on-4 · 2024</em></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ART-MEDICINE -->
+  <section id="art" class="artmed">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Арт-Медицина</p>
+        <h2 style="margin-top:14px">Искусство, которое<br>врачует душу</h2>
+        <p class="lead">Совместный проект клиники <strong style="color:var(--ink)">Colibri Dental</strong>, галереи <strong style="color:var(--ink)">Atelier CHOUTKO</strong> и художника <strong style="color:var(--ink)">Гоши Острецова</strong> — интеграция современного искусства в пространство медицинского учреждения.</p>
+      </div>
+
+      <figure class="artmed__media rv d1">
+        <img src="assets/art-medicine.jpg" alt="Арт-пространство Colibri Dental — работа Гоши Острецова по мотивам Леонардо да Винчи" />
+        <figcaption>Гоша Острецов. Из проекта «Арт-Медицина» для Colibri Dental</figcaption>
+      </figure>
+
+      <div class="artmed__body">
+        <h3 class="rv">Концепция</h3>
+        <p class="rv">Цель проекта — помощь пациентам и поддержка художников. Проект исследует, как искусство облегчает психологический дискомфорт и снимает страхи, связанные с медицинскими манипуляциями. Для художников проект открывает новый, социально ориентированный формат работы, выходящий за рамки традиционного выставочного пространства. Часть средств от продажи произведений направляется на лечение художников и помощь нуждающимся.</p>
+
+        <h3 class="rv">Художественное решение</h3>
+        <p class="rv">Визуальная концепция разработана Гошей Острецовым: узнаваемые образы Леонардо да Винчи эпохи Возрождения соединяются с утопической реальностью автора. Масштаб инициативы предполагает именно глубокую интеграцию искусства в среду клиники, а не временную pop-up экспозицию. Ключевые произведения созданы специально для пространства Colibri Dental — с учётом её профиля и атмосферы.</p>
+
+        <div class="artmed__quote rv">
+          <p class="lbl">Слово художника</p>
+          <blockquote>
+            <p>«Культурный феномен эпохи Возрождения связан с переосмыслением античности в контексте средневековых достижений схоластики: тело человека перестаёт быть тюрьмой духа и становится союзником в постижении полноты божественной благодати. Одним из гениев человечества мы по праву считаем Леонардо да Винчи — он воплотил синтез научного и художественного откровения и навсегда изменил оптику нашего видения мира.</p>
+            <p>Своим рассветом эпоха Возрождения обязана флорентийскому семейству Медичи, на фамильном гербе которого изображены три шарика, символизирующие медицинские пилюли. Иными словами, главными заказчиками и меценатами Возрождения были медики и фармацевты. Знание о здоровье и красоте тела соединилось тогда с достижениями изобразительного искусства: художник стремился показать духовную гармонию через идеальный образ человека — как единство души и врученного ей тела.</p>
+            <p>Поэтому я беру за основу образы Леонардо да Винчи и интерпретирую их в контексте главной задачи современного искусства — познать самого себя. Врач искусно врачует тело, а художник искусством врачует душу».</p>
+          </blockquote>
+          <cite>Гоша Острецов</cite>
+        </div>
+
+        <p class="rv">Мы планируем развивать проект с новыми художниками и медицинскими учреждениями.</p>
+
+        <h3 class="rv">Почему Colibri Dental</h3>
+        <p class="rv">Выбор стоматологической клиники Colibri Dental не случаен. Это экспертная стоматология и центр клинического мастерства Nobel Biocare, лучшие врачи и оборудование высочайшего класса: хирургия Brumaba, микроскопы Leica, виниры с прорисовкой микрорельефа. Здесь решают самые сложные задачи и исправляют чужие ошибки.</p>
+
+        <h3 class="rv">Участники проекта</h3>
+        <div class="artmed__people">
+          <div class="person rv">
+            <h4>Ольга Кашмина — Colibri Dental</h4>
+            <p>Основатель и главный врач клиники. Училась в Днепропетровске, Москве, Вене, Токио, Сан-Себастьяне, Нью-Йорке. Профессиональный опыт — более 20 лет.</p>
+          </div>
+          <div class="person rv">
+            <h4>Гоша Острецов — художник</h4>
+            <p>Родился в 1967 году в Москве. С середины 1980-х годов принимает активное участие в художественной жизни России и мира. В 2009-м представлял Россию на Венецианской биеннале. Работает в разных жанрах — от живописи до перформанса. Многие работы Острецова затрагивают темы утопии и антиутопии, мифологизации реальности и создания художественных альтернатив сложившимся стереотипам. Работы находятся в Третьяковской галерее, Русском музее, ГЦСИ, галерее Saatchi и во многих частных коллекциях по всему миру.</p>
+          </div>
+          <div class="person rv">
+            <h4>Atelier CHOUTKO — галерея</h4>
+            <p>Единственная в России галерея в сегменте текстильного искусства, сочетающая продвижение современных художников с созданием индивидуальных произведений ручной работы в собственных мастерских. Входит в Ассоциацию галерей и постоянно участвует в основных ярмарках современного искусства. <a href="https://www.choutko.com" target="_blank" rel="noopener">choutko.com</a> · Большой Девятинский, дом 5.</p>
+          </div>
+        </div>
+
+        <div class="artmed__contacts rv">
+          <h4>Контакты проекта</h4>
+          <p>
+            Colibri Dental на «Маяковской» · Краснопролетарская ул., д. 7<br>
+            <a href="tel:+74955653515">+7 (495) 565-35-15</a> · <a href="https://www.colibrident.ru" target="_blank" rel="noopener">colibrident.ru</a> · <a href="mailto:info@colibridental.ru">info@colibridental.ru</a><br>
+            <a href="tel:+79255023792">+7 925 502-37-92</a> — Евгений Шутко<br>
+            Посещение по предварительной договорённости.
+          </p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="st rv"><b>10+</b><span>лет на рынке</span></div>
+        <div class="st rv d1"><b>100%</b><span>индивидуальный подход</span></div>
+        <div class="st rv d2"><b>∞</b><span>естественных улыбок</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="callout" id="cta">
+    <div class="wrap">
+      <p class="eyebrow on-dark rv">Запись</p>
+      <h2 class="rv d1">Подарите себе улыбку,<br>в которую <em>хочется верить</em></h2>
+      <p class="rv d2">Запишитесь на консультацию — мы покажем, какой может стать ваша улыбка, ещё до начала лечения.</p>
+      <div class="rv d3"><a href="#booking" class="btn gold">Записаться на консультацию</a></div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="booking" class="booking">
+    <div class="wrap booking__in">
+      <div class="booking__copy rv">
+        <p class="eyebrow">Запись</p>
+        <h2>Начнём с консультации</h2>
+        <p class="lead">Оставьте контакты — администратор перезвонит, ответит на вопросы и подберёт удобное время.</p>
+        <div class="contacts-quick">
+          <div class="cq">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><b>м. Маяковская</b><span>Краснопролетарская ул., 7</span></div>
+          </div>
+          <div class="cq">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 18l-1 4a16 16 0 0 1-15-15Z"/></svg>
+            <div><b>+7 (495) 565-35-15</b><span>Ежедневно · 9:00–21:00</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form rv d1">
+        <form id="bookForm" class="form__fields" novalidate>
+          <div class="field">
+            <label for="bf-name">Ваше имя <span class="req">*</span></label>
+            <input id="bf-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required />
+            <span class="msg">Пожалуйста, укажите имя.</span>
+          </div>
+          <div class="field">
+            <label for="bf-phone">Телефон <span class="req">*</span></label>
+            <input id="bf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required />
+            <span class="msg">Укажите корректный номер телефона.</span>
+          </div>
+          <div class="field">
+            <label for="bf-msg">Комментарий</label>
+            <textarea id="bf-msg" name="message" placeholder="Коротко о задаче — по желанию"></textarea>
+          </div>
+          <label class="consent" id="bf-consent-wrap">
+            <input id="bf-consent" type="checkbox" />
+            <span>Я согласен(а) на обработку персональных данных в соответствии с <a data-modal="privacy">Политикой конфиденциальности</a>.</span>
+          </label>
+          <button type="submit" class="btn gold">Отправить заявку</button>
+          <p class="fnote">Нажимая кнопку, вы соглашаетесь с условиями обработки данных. Имеются противопоказания, необходима консультация специалиста.</p>
+        </form>
+        <div class="form__done" id="formDone">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 13 4 4L19 7"/></svg></div>
+          <h3>Спасибо!</h3>
+          <p>Заявка принята. Мы свяжемся с вами в ближайшее время.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="contacts">
+  <div class="wrap">
+    <div class="foot__top foot">
+      <div class="foot__brand rv">
+        <img src="assets/logo.png" alt="Colibri Dental" />
+        <p>Авторская премиальная стоматология в Москве. Эстетика, неотличимая от природы.</p>
+        <div class="soc">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 20c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9-8.1c.4-.3-.1-.5-.6-.2L6.1 13.3l-4.8-1.5c-1-.3-1.1-1 .2-1.5l18.8-7.2c.9-.3 1.6.2 1.4 1.2z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5 15 12l-5 2.5z" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+      <div class="foot rv d1">
+        <h4>Клиника на Маяковской</h4>
+        <address>Краснопролетарская ул., 7<br>Москва</address>
+        <a href="tel:+74955653515">+7 (495) 565-35-15</a>
+      </div>
+      <div class="foot rv d3">
+        <h4>Записаться</h4>
+        <a href="tel:+74955653515">+7 (495) 565-35-15</a>
+        <a href="mailto:hello@colibrident.ru">hello@colibrident.ru</a>
+        <a href="https://www.colibrident.ru">colibrident.ru</a>
+      </div>
+    </div>
+    <div class="foot__legal">
+      <span class="ph-mark-note">ООО «<span style="color:#d8c2bd">Название организации</span>» · ОГРН <span style="color:#d8c2bd">0000000000000</span> · ИНН <span style="color:#d8c2bd">0000000000</span></span><br>
+      Лицензия на медицинскую деятельность № <span style="color:#d8c2bd">ЛО-00-00-000000</span> от <span style="color:#d8c2bd">00.00.0000</span>.
+      <a data-modal="privacy">Политика конфиденциальности</a> · <a data-modal="consent">Согласие на обработку ПДн</a>
+      <span class="disc">Имеются противопоказания, необходима консультация специалиста. Информация на сайте не является публичной офертой.</span>
+    </div>
+    <div class="foot__bot">
+      <span>© 2026 Colibri Dental. Авторская стоматология. Москва.</span>
+      <span>м. Маяковская</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODALS -->
+<div class="modal" id="modal-privacy" role="dialog" aria-modal="true" aria-label="Политика конфиденциальности">
+  <div class="modal__scrim" data-close></div>
+  <div class="modal__box">
+    <button class="modal__close" data-close aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <p class="eyebrow">Документ</p>
+    <h2>Политика конфиденциальности</h2>
+    <p>Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта Colibri Dental (далее — «Оператор»: ООО «<span class="ph-mark">Название организации</span>», ОГРН <span class="ph-mark">0000000000000</span>, адрес: <span class="ph-mark">г. Москва, …</span>).</p>
+    <h4>1. Какие данные мы обрабатываем</h4>
+    <p>Имя, номер телефона и иные данные, добровольно указанные вами в форме записи, а также технические данные (cookie, сведения о посещении), необходимые для работы сайта.</p>
+    <h4>2. Цели обработки</h4>
+    <ul>
+      <li>запись на консультацию и приём, обратная связь с пациентом;</li>
+      <li>информирование об услугах клиники (с вашего согласия);</li>
+      <li>улучшение качества сервиса и работы сайта.</li>
+    </ul>
+    <h4>3. Правовые основания</h4>
+    <p>Обработка осуществляется на основании Федерального закона № 152-ФЗ «О персональных данных» и вашего согласия, выраженного при отправке формы.</p>
+    <h4>4. Сроки и защита</h4>
+    <p>Данные хранятся не дольше, чем требуется для целей обработки, и защищены организационными и техническими мерами. Мы не передаём данные третьим лицам, за исключением случаев, предусмотренных законом.</p>
+    <h4>5. Ваши права</h4>
+    <p>Вы вправе запросить уточнение, блокирование или удаление своих данных, а также отозвать согласие, написав на <span class="ph-mark">hello@colibrident.ru</span>.</p>
+    <p style="margin-top:18px;font-size:.82rem">Поля, отмеченные <span class="ph-mark">цветом</span>, необходимо заменить на реальные реквизиты организации.</p>
+  </div>
+</div>
+
+<div class="modal" id="modal-consent" role="dialog" aria-modal="true" aria-label="Согласие на обработку персональных данных">
+  <div class="modal__scrim" data-close></div>
+  <div class="modal__box">
+    <button class="modal__close" data-close aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <p class="eyebrow">Документ</p>
+    <h2>Согласие на обработку персональных данных</h2>
+    <p>Отправляя форму на сайте, я свободно, своей волей и в своём интересе даю согласие ООО «<span class="ph-mark">Название организации</span>» (ОГРН <span class="ph-mark">0000000000000</span>) на обработку моих персональных данных: фамилии, имени, номера телефона и иных данных, указанных в форме.</p>
+    <h4>Действия с данными</h4>
+    <p>Сбор, запись, хранение, уточнение, использование и удаление — с целью записи на приём и обратной связи. Обработка осуществляется в соответствии с Федеральным законом № 152-ФЗ.</p>
+    <h4>Срок действия и отзыв</h4>
+    <p>Согласие действует до достижения целей обработки или до его отзыва. Отозвать согласие можно, направив обращение на <span class="ph-mark">hello@colibrident.ru</span>.</p>
+    <p style="margin-top:18px;font-size:.82rem">Поля, отмеченные <span class="ph-mark">цветом</span>, необходимо заменить на реальные реквизиты организации.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  // nav scroll state
+  var hdr=document.getElementById('hdr');
+  var onScroll=function(){ hdr.classList.toggle('scrolled', window.scrollY>40); };
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  // mobile menu
+  var burger=document.getElementById('burger');
+  var menu=document.getElementById('menu');
+  burger.addEventListener('click',function(){ document.body.classList.toggle('menu-open'); });
+  menu.addEventListener('click',function(e){ if(e.target.tagName==='A') document.body.classList.remove('menu-open'); });
+
+  // reveal on scroll
+  var rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if('IntersectionObserver' in window && !rm){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+    },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  } else {
+    document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});
+  }
+
+  // before/after compare sliders (несколько на странице)
+  document.querySelectorAll('.compare').forEach(function(cmp){
+    var after=cmp.querySelector('.after');
+    var handle=cmp.querySelector('.handle');
+    var dragging=false;
+    function setPos(clientX){
+      var r=cmp.getBoundingClientRect();
+      var x=Math.min(Math.max(clientX-r.left,0),r.width);
+      var pct=x/r.width*100;
+      after.style.clipPath='inset(0 0 0 '+pct+'%)';
+      handle.style.left=pct+'%';
+    }
+    cmp.addEventListener('mousedown',function(e){dragging=true;setPos(e.clientX);});
+    cmp.addEventListener('touchstart',function(e){dragging=true;setPos(e.touches[0].clientX);},{passive:true});
+    window.addEventListener('mousemove',function(e){if(dragging)setPos(e.clientX);});
+    window.addEventListener('touchmove',function(e){if(dragging)setPos(e.touches[0].clientX);},{passive:true});
+    window.addEventListener('mouseup',function(){dragging=false;});
+    window.addEventListener('touchend',function(){dragging=false;});
+  });
+
+  // subtle hero parallax
+  if(!rm){
+    var heroImg=document.querySelector('.hero__bg img');
+    window.addEventListener('scroll',function(){
+      var y=window.scrollY;
+      if(y<window.innerHeight) heroImg.style.transform='translateY('+(y*0.18)+'px) scale(1.05)';
+    },{passive:true});
+  }
+
+  // booking form
+  var form=document.getElementById('bookForm');
+  if(form){
+    var name=document.getElementById('bf-name');
+    var phone=document.getElementById('bf-phone');
+    var consent=document.getElementById('bf-consent');
+    var cWrap=document.getElementById('bf-consent-wrap');
+    var clean=function(el){el.classList.remove('err');};
+    [name,phone].forEach(function(el){el.addEventListener('input',function(){clean(el);});});
+    consent.addEventListener('change',function(){cWrap.classList.remove('err');});
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var ok=true;
+      if(!name.value.trim()){name.classList.add('err');ok=false;}
+      var digits=(phone.value.match(/\d/g)||[]).length;
+      if(digits<10){phone.classList.add('err');ok=false;}
+      if(!consent.checked){cWrap.classList.add('err');ok=false;}
+      if(!ok){ form.querySelector('.err input,input.err,select.err'); return; }
+
+      // --- Данные заявки ---
+      var data={
+        name:name.value.trim(),
+        phone:phone.value.trim(),
+        message:document.getElementById('bf-msg').value.trim()
+      };
+      // TODO: подключить доставку заявки (Formspree / Telegram-бот / e-mail / CRM).
+      // Пример: fetch('https://formspree.io/f/XXXX',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+      console.log('Заявка Colibri Dental:',data);
+
+      document.body.classList.add('sent');
+      document.getElementById('formDone').classList.add('show');
+      document.getElementById('formDone').scrollIntoView({block:'center',behavior:rm?'auto':'smooth'});
+    });
+  }
+
+  // modals
+  function openModal(id){
+    var m=document.getElementById('modal-'+id);
+    if(!m)return;
+    m.classList.add('open');
+    document.documentElement.style.overflow='hidden';
+  }
+  function closeModals(){
+    document.querySelectorAll('.modal.open').forEach(function(m){m.classList.remove('open');});
+    document.documentElement.style.overflow='';
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-modal]');
+    if(t){e.preventDefault();openModal(t.getAttribute('data-modal'));return;}
+    if(e.target.closest('[data-close]')){closeModals();}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModals();});
+})();
+</script>
+</body>
+</html>
