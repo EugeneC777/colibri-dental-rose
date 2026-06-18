@@ -108,7 +108,8 @@
   /* ---------- hero ---------- */
   .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
   .hero__bg{position:absolute;inset:0;z-index:-2}
-  .hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .hero__bg img,.hero__bg video{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block}
+  @media(max-width:760px){.hero__bg video{object-position:58% center}}
   .hero__bg::after{content:"";position:absolute;inset:0;
     background:linear-gradient(180deg,rgba(44,31,32,.55) 0%,rgba(44,31,32,.15) 35%,rgba(44,31,32,.78) 100%)}
   .hero__inner{width:100%;padding-bottom:clamp(48px,9vh,110px);padding-top:140px}
@@ -480,7 +481,11 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__bg"><img src="assets/hero.jpg" alt="Доктор Colibri Dental за работой под увеличением" /></div>
+    <div class="hero__bg">
+      <video class="hero__vid" autoplay muted loop playsinline preload="auto" poster="assets/hero.jpg" aria-label="Colibri Dental — приём в клинике">
+        <source src="assets/forsite.mp4" type="video/mp4" />
+      </video>
+    </div>
     <div class="wrap hero__inner">
       <p class="eyebrow on-dark rv">Colibri Dental · Авторская стоматология · Москва</p>
       <h1 class="rv d1">Новый стандарт<br><em>эстетической</em> стоматологии</h1>
@@ -1030,12 +1035,16 @@
     window.addEventListener('touchend',function(){dragging=false;});
   });
 
+  // hero video: уважать prefers-reduced-motion (показываем постер)
+  var heroVid=document.querySelector('.hero__bg video');
+  if(heroVid && rm){ heroVid.removeAttribute('autoplay'); try{heroVid.pause();}catch(e){} }
+
   // subtle hero parallax
   if(!rm){
-    var heroImg=document.querySelector('.hero__bg img');
+    var heroImg=document.querySelector('.hero__bg video, .hero__bg img');
     window.addEventListener('scroll',function(){
       var y=window.scrollY;
-      if(y<window.innerHeight) heroImg.style.transform='translateY('+(y*0.18)+'px) scale(1.05)';
+      if(heroImg && y<window.innerHeight) heroImg.style.transform='translateY('+(y*0.18)+'px) scale(1.05)';
     },{passive:true});
   }
 
