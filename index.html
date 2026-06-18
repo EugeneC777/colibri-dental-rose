@@ -47,6 +47,7 @@
     color:var(--gold-deep);
   }
   .eyebrow.on-dark{color:var(--gold)}
+  .hero .eyebrow.on-dark{color:rgba(255,255,255,.92)}
 
   /* ---------- buttons / links ---------- */
   .btn{
@@ -92,9 +93,10 @@
   header.scrolled .menu a{color:var(--ink)}
   .menu a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .4s var(--ease)}
   .menu a:hover::after{width:100%}
-  .menu a.cta{border:1px solid currentColor;padding:.7em 1.4em;border-radius:2px}
+  .menu a.cta{border:1px solid var(--gold);background:var(--gold);color:#fff;padding:.7em 1.4em;border-radius:2px}
   .menu a.cta::after{display:none}
-  .menu a.cta:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+  header.scrolled .menu a.cta{color:#fff}
+  .menu a.cta:hover{background:#a76d69;border-color:#a76d69;color:#fff}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;z-index:120;padding:6px}
   .burger span{width:26px;height:1.5px;background:#fff;transition:all .4s var(--ease)}
   header.scrolled .burger span{background:var(--ink)}
