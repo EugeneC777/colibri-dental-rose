@@ -109,7 +109,7 @@
   .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
   .hero__bg{position:absolute;inset:0;z-index:-2}
   .hero__bg img,.hero__bg video{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block}
-  @media(max-width:760px){.hero__bg video{object-position:58% center}}
+  @media(max-width:760px){.hero__bg video{object-position:center}}
   .hero__bg::after{content:"";position:absolute;inset:0;
     background:linear-gradient(180deg,rgba(44,31,32,.55) 0%,rgba(44,31,32,.15) 35%,rgba(44,31,32,.78) 100%)}
   .hero__inner{width:100%;padding-bottom:clamp(48px,9vh,110px);padding-top:140px}
@@ -483,7 +483,8 @@
   <section class="hero">
     <div class="hero__bg">
       <video class="hero__vid" autoplay muted loop playsinline preload="auto" poster="assets/hero.jpg" aria-label="Colibri Dental — приём в клинике">
-        <source src="assets/forsite.mp4" type="video/mp4" />
+        <source src="assets/hero-mobile.mp4" media="(max-width:760px)" type="video/mp4" />
+        <source src="assets/hero-desktop.mp4" type="video/mp4" />
       </video>
     </div>
     <div class="wrap hero__inner">
